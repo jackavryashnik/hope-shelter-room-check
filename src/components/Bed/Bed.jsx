@@ -1,7 +1,16 @@
-const Bed = () => {
-  return (
-    <div>Bed</div>
-  )
-}
+import css from './Bed.module.css';
 
-export default Bed
+const Bed = ({ check }) => {
+  const isChecked = check;
+
+  return (
+    <div className={css.bedWrapper}>
+      <label className={css.bed}>
+        <input type="checkbox" className={css.check} checked={isChecked} />
+        <span className={css.checkmark}></span>
+      </label>
+    </div>
+  );
+};
+
+export default Bed;
