@@ -1,0 +1,55 @@
+.bedWrapper {
+  display: flex;
+  width: 50px;
+  height: 100px;
+  margin: 8px;
+}
+
+/* Customize the label (the container) */
+.bed {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.bed input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 100px;
+  border-radius: 8px;
+  background-color: var(--blue);
+}
+
+/* On mouse-over, background color softer */
+.bed:hover input ~ .checkmark {
+  background-color: var(--light-blue);
+}
+
+/* When the checkbox is checked, change background */
+.bed input:checked ~ .checkmark {
+  background-color: var(--grey);
+}
+
+/* On mouse-over, background color softer */
+.bed:hover input:checked ~ .checkmark {
+  background-color: var(--light-grey);
+}

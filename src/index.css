@@ -18,7 +18,12 @@
   --white: #ffffff;
   --black: #000000;
   --grey: #8d8d8d;
+  --light-grey: #B3B3B3;
   --dark-grey: #585858;
+  --blue: #0057B7;
+  --light-blue: #3380D0;
+  --yellow: #FFDD00;
+  --light-yellow: #FFE866;
 }
 
 *,
