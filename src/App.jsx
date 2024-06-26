@@ -2,12 +2,9 @@ import NotFoundPage from './pages/NotFoundPage';
 import Layout from './components/Layout/Layout';
 import PrivateRout from './components/PrivateRoute/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { refreshUser } from './redux/auth/operations';
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { selectIsRefreshing } from './redux/auth/selectors';
+import { useState } from 'react';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const Login = lazy(() => import('./pages/Login'));
@@ -15,19 +12,11 @@ const RoomsPage = lazy(() => import('./pages/RoomsPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 
 function App() {
-  const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
       <Layout>
-        {
-        isRefreshing ?
-        <p>Loading...</p> :
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -35,16 +24,27 @@ function App() {
             <Route path="/rooms" element={<RoomsPage />} />
             <Route
               path="/rooms"
-              element={<PrivateRout redirectTo="/login" component={<RoomsPage />} />}
+              element={
+                <PrivateRout
+                  isLoggedIn={isLoggedIn}
+                  redirectTo="/login"
+                  component={<RoomsPage />}
+                />
+              }
             />
             <Route
               path="/login"
-              element={<RestrictedRoute redirectTo="/rooms" component={<Login />} />}
+              element={
+                <RestrictedRoute
+                  isLoggedIn={isLoggedIn}
+                  redirectTo="/rooms"
+                  component={<Login setter={setIsLoggedIn} />}
+                />
+              }
             />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
-        }
       </Layout>
     </>
   );
