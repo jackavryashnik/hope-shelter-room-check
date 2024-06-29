@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 19px 16px;
+    height: 70px;
+    background-color: skyblue;
+    color: black;
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    fill: black;
+}

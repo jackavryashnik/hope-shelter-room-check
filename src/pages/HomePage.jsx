@@ -1,12 +1,9 @@
-import TwoFloorsBed from '../components/TwoFloorsBed/TwoFloorsBed';
-import Bed from '../components/Bed/Bed';
+import Header from '../components/Header/Header';
 
-const HomePage = () => {
+const HomePage = ({ isLoggedIn }) => {
   return (
     <>
-      <p>Home page</p>
-      <Bed />
-      <TwoFloorsBed />
+      <Header isLoggedIn={isLoggedIn} />
     </>
   );
 };

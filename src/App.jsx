@@ -12,14 +12,14 @@ const RoomsPage = lazy(() => import('./pages/RoomsPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <>
       <Layout>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/rooms" element={<RoomsPage />} />
             <Route
