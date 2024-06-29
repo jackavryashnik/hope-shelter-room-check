@@ -1,4 +1,5 @@
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import Header from './components/Header/Header';
 import Layout from './components/Layout/Layout';
 import PrivateRout from './components/PrivateRoute/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
@@ -9,7 +10,6 @@ import { useState } from 'react';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const Login = lazy(() => import('./pages/Login'));
 const RoomsPage = lazy(() => import('./pages/RoomsPage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -17,10 +17,10 @@ function App() {
   return (
     <>
       <Layout>
+        <Header isLoggedIn={isLoggedIn} />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/rooms" element={<RoomsPage />} />
             <Route
               path="/rooms"

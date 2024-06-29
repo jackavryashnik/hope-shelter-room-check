@@ -1,11 +1,5 @@
-import Header from '../components/Header/Header';
-
-const HomePage = ({ isLoggedIn }) => {
-  return (
-    <>
-      <Header isLoggedIn={isLoggedIn} />
-    </>
-  );
+const HomePage = () => {
+  return <>HomePage</>;
 };
 
 export default HomePage;
