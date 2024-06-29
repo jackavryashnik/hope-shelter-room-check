@@ -1,14 +1,13 @@
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Header from './components/Header/Header';
 import Layout from './components/Layout/Layout';
-import PrivateRout from './components/PrivateRoute/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { useState } from 'react';
+import AuthPage from './pages/AuthPage/AuthPage';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
-const Login = lazy(() => import('./pages/Login'));
 const RoomsPage = lazy(() => import('./pages/RoomsPage'));
 
 function App() {
@@ -23,22 +22,12 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/rooms" element={<RoomsPage />} />
             <Route
-              path="/rooms"
-              element={
-                <PrivateRout
-                  isLoggedIn={isLoggedIn}
-                  redirectTo="/login"
-                  component={<RoomsPage />}
-                />
-              }
-            />
-            <Route
-              path="/login"
+              path="/:authType"
               element={
                 <RestrictedRoute
                   isLoggedIn={isLoggedIn}
-                  redirectTo="/rooms"
-                  component={<Login setter={setIsLoggedIn} />}
+                  redirectTo="/"
+                  component={<AuthPage setter={setIsLoggedIn} />}
                 />
               }
             />
