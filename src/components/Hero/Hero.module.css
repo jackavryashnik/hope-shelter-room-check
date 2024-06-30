@@ -19,3 +19,8 @@
   max-width: 228px;
   margin-bottom: 36px;
 }
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
