@@ -9,17 +9,29 @@ export default function Footer() {
       <div className={css.footerWrapper}>
         <ul className={css.footerList}>
           <li>
-            <a href="https://www.instagram.com/hope.shelter.pl/">
+            <a
+              href="https://www.instagram.com/hope.shelter.pl/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <FaInstagram size={32} />
             </a>
           </li>
           <li>
-            <a href="https://www.hope.org.pl/refugee-centre-in-przemysl">
+            <a
+              href="https://www.hope.org.pl/refugee-centre-in-przemysl"
+              target="_blank"
+              rel="noreferrer"
+            >
               <TfiWorld size={32} />
             </a>
           </li>
           <li>
-            <a href="https://www.facebook.com/hopefoundationeu/">
+            <a
+              href="https://www.facebook.com/hopefoundationeu/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <PiFacebookLogoBold size={32} />
             </a>
           </li>

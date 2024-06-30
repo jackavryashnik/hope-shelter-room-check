@@ -16,6 +16,11 @@
   margin-bottom: 14px;
 }
 
+.footerList > li > a {
+  height: 32px;
+  width: 32px;
+}
+
 .footerLink {
   display: block;
   font-size: 13px;
