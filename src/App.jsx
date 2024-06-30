@@ -5,8 +5,8 @@ import { lazy, Suspense } from 'react';
 import { useState } from 'react';
 import AuthPage from './pages/AuthPage/AuthPage';
 
-const HomePage = lazy(() => import('./pages/HomePage'));
-const RoomsPage = lazy(() => import('./pages/RoomsPage'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const RoomsPage = lazy(() => import('./pages/RoomsPage/RoomsPage'));
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
