@@ -1,7 +1,11 @@
-const RoomsPage = () => {
+import Header from '../components/Header/Header';
+import Layout from '../components/Layout/Layout';
+
+const RoomsPage = ({ isLoggedIn }) => {
   return (
     <>
-      <p>Rooms page</p>
+      <Header isLoggedIn={isLoggedIn} />
+      <Layout>Rooms page</Layout>
     </>
   );
 };

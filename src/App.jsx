@@ -1,6 +1,4 @@
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import Header from './components/Header/Header';
-import Layout from './components/Layout/Layout';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
@@ -15,12 +13,13 @@ function App() {
 
   return (
     <>
-      <Layout>
-        <Header isLoggedIn={isLoggedIn} />
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/rooms" element={<RoomsPage />} />
+            <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
+            <Route
+              path="/rooms"
+              element={<RoomsPage isLoggedIn={isLoggedIn} />}
+            />
             <Route
               path="/:authType"
               element={
@@ -34,7 +33,6 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
-      </Layout>
     </>
   );
 }
