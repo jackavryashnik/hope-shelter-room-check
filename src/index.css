@@ -1,29 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Josefin+Sans:ital,wght@0,500;1,500&family=Kanit:wght@500&family=Montserrat:wght@100..900&family=Mulish:ital@0;1&display=swap');
 
 :root {
-  font-family: 'Reddit Mono', monospace, 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
+  --font-family: 'Montserrat', sans-serif;
+  --second-family: 'Inter', sans-serif;
+  --third-family: 'Mulish', sans-serif;
+  --font3: 'Kanit', sans-serif;
+  --font4: 'Josefin Sans', sans-serif;
 
-  color: #ffffff;
-  background-color: #585858;
+  color: #171515;
+  background-color: #d9d9d9;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --white: #ffffff;
-  --black: #000000;
+  --white: #f7f7f7;
+  --black: #171515;
   --grey: #8d8d8d;
-  --light-grey: #B3B3B3;
+  --light-grey: #b3b3b3;
   --dark-grey: #585858;
-  --blue: #0057B7;
-  --light-blue: #3380D0;
-  --yellow: #FFDD00;
-  --light-yellow: #FFE866;
+  --blue: #0057b7;
+  --light-blue: #3380d0;
+  --yellow: #ffdd00;
+  --light-yellow: #ffe866;
+  --green-feeling: #ddf3cf;
+  --yellow-feeling: #ffeba2;
+  --red-feeling: #f3dccf;
+  --btn-color: #2a415b;
+  --btn-active-color: #2a415b;
 }
 
 *,

@@ -1,16 +1,25 @@
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    padding: 19px 16px;
-    height: 70px;
-    background-color: skyblue;
-    color: black;
+  padding: 19px 16px;
+  height: 70px;
+  background-color: #dfe9f5;
+  color: var(--black);
+}
+
+.logo {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: var(--black);
 }
 
 .icon {
-    width: 32px;
-    height: 32px;
-    fill: black;
+  width: 32px;
+  height: 32px;
+  fill: var(--black);
 }
