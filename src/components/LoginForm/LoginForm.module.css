@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  border-radius: 8px;
+  width: 311px;
+  height: 50px;
+  background: #fff;
+  border: none;
+  padding: 16px;
+}
+
+.error {
+  color: red;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}

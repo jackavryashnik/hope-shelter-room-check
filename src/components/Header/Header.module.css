@@ -5,6 +5,7 @@
 
   padding: 19px 16px;
   height: 70px;
+  width: 100%;
   background-color: #dfe9f5;
   color: var(--black);
 }
