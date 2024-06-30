@@ -18,6 +18,10 @@
   color: var(--black);
 }
 
+.authLink {
+  line-height: 0;
+}
+
 .icon {
   width: 32px;
   height: 32px;

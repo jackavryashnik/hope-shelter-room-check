@@ -1,0 +1,31 @@
+.hero {
+  padding: 150px 0 370px;
+}
+
+.heroTitle {
+  font-family: var(--font3);
+  font-weight: 500;
+  font-size: 43px;
+  line-height: 1.5;
+  color: #171515;
+  margin-bottom: 12px;
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.heroText {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #171515;
+  max-width: 228px;
+  margin-bottom: 36px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
