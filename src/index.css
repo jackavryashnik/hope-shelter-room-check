@@ -32,7 +32,8 @@
   --yellow-feeling: #ffeba2;
   --red-feeling: #f3dccf;
   --btn-color: #2a415b;
-  --btn-active-color: #2a415b;
+  --btn-active-color: #213851;
+  --btn-nonactive-color: #818181;
 }
 
 *,
