@@ -1,0 +1,40 @@
+.authPage {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+}
+
+.authPageContainer {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 8px;
+  width: 343px;
+  height: 419px;
+  padding: 24px 16px;
+  margin: 32px auto;
+  background-color: var(--auth-bg-color);
+}
+
+.authNavigation {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+}
+
+.authNavLink {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 150%;
+  color: var(--dark-grey);
+}
+
+.authNavLink.activeLink {
+  color: var(--black);
+}

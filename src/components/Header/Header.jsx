@@ -15,7 +15,7 @@ const Header = ({ isLoggedIn }) => {
         </Link>
       )}
 
-      <Link to="/auth" className={css.authLink}>
+      <Link to="/login" className={css.authLink}>
         <CgProfile className={css.icon} />
       </Link>
     </header>

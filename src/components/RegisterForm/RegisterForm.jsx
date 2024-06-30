@@ -3,17 +3,18 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
 import Button from '../Button/Button';
-import css from './LoginForm.module.css';
+import css from './RegisterForm.module.css';
 
 const validationSchema = Yup.object({
+  name: Yup.string().required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
 });
 
-const LoginForm = ({ setter }) => {
-  const loginFormId = useId();
+const RegisterForm = ({ setter }) => {
+  const registerFormId = useId();
 
-  const handleLogin = async (values, actions) => {
+  const handleRegister = async (values, actions) => {
     // const result = await axios.post(values);
     // if (result.status === 201) {
     //   setter(true);
@@ -25,8 +26,8 @@ const LoginForm = ({ setter }) => {
 
   return (
     <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={handleLogin}
+      initialValues={{ name: '', email: '', password: '' }}
+      onSubmit={handleRegister}
       validationSchema={validationSchema}
     >
       <Form className={css.form}>
@@ -34,8 +35,18 @@ const LoginForm = ({ setter }) => {
           <div className={css.inputWrapper}>
             <Field
               type="text"
+              name="name"
+              id={`${registerFormId}-name`}
+              className={css.input}
+              placeholder="Name"
+            />
+            <ErrorMessage name="name" component="span" className={css.error} />
+          </div>
+          <div className={css.inputWrapper}>
+            <Field
+              type="text"
               name="email"
-              id={`${loginFormId}-email`}
+              id={`${registerFormId}-email`}
               className={css.input}
               placeholder="Email"
             />
@@ -45,7 +56,7 @@ const LoginForm = ({ setter }) => {
             <Field
               type="text"
               name="password"
-              id={`${loginFormId}-password`}
+              id={`${registerFormId}-password`}
               className={css.input}
               placeholder="Password"
             />
@@ -56,10 +67,10 @@ const LoginForm = ({ setter }) => {
             />
           </div>
         </div>
-        <Button type="submit">Log in</Button>
+        <Button type="submit">Register</Button>
       </Form>
     </Formik>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
