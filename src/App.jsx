@@ -9,7 +9,7 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const RoomsPage = lazy(() => import('./pages/RoomsPage/RoomsPage'));
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <>
