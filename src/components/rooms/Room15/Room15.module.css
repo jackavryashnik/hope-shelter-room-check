@@ -1,0 +1,22 @@
+.roomContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  padding: 32px;
+  width: 343px;
+  height: 298px;
+  border-radius: 12px;
+  border: 1px solid #d5d5d5;
+  background-color: var(--white);
+}
+
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rightSide {
+    display: flex;
+}
