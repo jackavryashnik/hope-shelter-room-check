@@ -2,7 +2,7 @@
   display: grid;
   align-content: space-between;
   grid-template-columns: 0fr 1fr;
-  justify-items: center;
+  justify-items: end;
   align-items: start;
   position: relative;
 
