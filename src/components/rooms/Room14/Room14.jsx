@@ -6,12 +6,12 @@ const Room14 = () => {
   return (
     <div className={css.roomContainer}>
       <div className={css.top}>
-        <TwoFloorsBed className={css.bed4} />
-        <TwoFloorsBedHorizon className={css.bed3} />
+        <TwoFloorsBed />
+        <TwoFloorsBedHorizon />
       </div>
       <div className={css.roomNumber}>14</div>
       <div className={css.bottom}>
-        <TwoFloorsBedHorizon className={css.bed3} />
+        <TwoFloorsBedHorizon />
       </div>
     </div>
   );
