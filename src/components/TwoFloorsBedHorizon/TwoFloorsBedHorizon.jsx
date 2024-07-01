@@ -1,6 +1,6 @@
-import css from './TwoFloorsBed.module.css';
+import css from './TwoFloorsBedHorizon.module.css';
 
-const TwoFloorsBed = ({ checkUp, checkDwn }) => {
+const TwoFloorsBedHorizon = ({ checkUp, checkDwn }) => {
   const isCheckedUp = checkUp;
   const isCheckedDwn = checkDwn;
 
@@ -18,4 +18,4 @@ const TwoFloorsBed = ({ checkUp, checkDwn }) => {
   );
 };
 
-export default TwoFloorsBed;
+export default TwoFloorsBedHorizon;
