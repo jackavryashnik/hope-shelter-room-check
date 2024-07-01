@@ -95,3 +95,7 @@
 .lowerBed:hover input:checked ~ .checkmark {
   background-color: var(--light-grey);
 }
+
+.rotate {
+  rotate: 90deg;
+}

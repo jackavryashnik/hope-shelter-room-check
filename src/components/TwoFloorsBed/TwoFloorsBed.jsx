@@ -1,11 +1,12 @@
+import clsx from 'clsx';
 import css from './TwoFloorsBed.module.css';
 
-const TwoFloorsBed = ({ checkUp, checkDwn }) => {
+const TwoFloorsBed = ({ checkUp, checkDwn, rotate }) => {
   const isCheckedUp = checkUp;
   const isCheckedDwn = checkDwn;
 
   return (
-    <div className={css.bedWrapper}>
+    <div className={clsx(css.bedWrapper, rotate && css.rotate)}>
       <label className={css.lowerBed}>
         <input type="checkbox" className={css.check} checked={isCheckedDwn} />
         <span className={css.checkmark}></span>
