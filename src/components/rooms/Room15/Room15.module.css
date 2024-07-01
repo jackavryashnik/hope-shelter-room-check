@@ -1,7 +1,7 @@
 .roomContainer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  flex-wrap: wrap;
 
   padding: 32px;
   width: 343px;
@@ -11,12 +11,11 @@
   background-color: var(--white);
 }
 
-.leftSide {
+.top {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
 
-.rightSide {
-    display: flex;
+.roomNumber {
+  text-align: center;
 }
