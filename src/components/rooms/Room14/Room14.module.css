@@ -17,6 +17,11 @@
   justify-content: space-between;
 }
 
+.bottom {
+  display: flex;
+  justify-content: end;
+}
+
 .roomNumber {
   position: absolute;
   top: 50%;
