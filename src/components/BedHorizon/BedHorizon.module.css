@@ -1,7 +1,7 @@
 .bedWrapper {
   display: flex;
-  width: 50px;
-  height: 100px;
+  width: 100px;
+  height: 50px;
   margin: 8px;
 }
 
@@ -33,8 +33,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 50px;
-  height: 100px;
+  width: 100px;
+  height: 50px;
   border-radius: 8px;
   background-color: var(--blue);
 }

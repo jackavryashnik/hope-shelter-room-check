@@ -1,0 +1,98 @@
+.bedWrapper {
+    display: flex;
+    width: 104px;
+    height: 50px;
+    margin: 8px;
+  }
+  
+  /* Customize the label (the container) */
+  .lowerBed,
+  .upperBed {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .lowerBed {
+    left: 54px;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .lowerBed input,
+  .upperBed input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+  }
+  
+  .checkmark:after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 4px;
+    border-radius: 4px;
+  }
+  
+  .upperBed .checkmark:after {
+    background-color: var(--yellow);
+  }
+  
+  .lowerBed .checkmark:after {
+    background-color: var(--blue);
+  }
+  
+  .upperBed .checkmark {
+    background-color: var(--blue);
+  }
+  
+  .lowerBed .checkmark {
+    background-color: var(--yellow);
+  }
+  
+  /* On mouse-over, background color softer */
+  .upperBed:hover input ~ .checkmark {
+    background-color: var(--light-blue);
+  }
+  
+  .lowerBed:hover input ~ .checkmark {
+    background-color: var(--light-yellow);
+  }
+  
+  .upperBed input:checked ~ .checkmark:after,
+  .lowerBed input:checked ~ .checkmark:after {
+    background-color: var(--dark-grey);
+  }
+  
+  /* When the checkbox is checked, change background */
+  .upperBed input:checked ~ .checkmark,
+  .lowerBed input:checked ~ .checkmark {
+    background-color: var(--grey);
+  }
+  
+  /* On mouse-over, background color softer */
+  .upperBed:hover input:checked ~ .checkmark,
+  .lowerBed:hover input:checked ~ .checkmark {
+    background-color: var(--light-grey);
+  }
+  
