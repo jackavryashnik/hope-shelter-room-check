@@ -14,14 +14,13 @@
 
 .top {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .bottom {
   display: flex;
-  justify-content: end;
+  justify-content: flex-start;
   align-items: end;
-  gap: 30px;
 }
 
 .roomNumber {
