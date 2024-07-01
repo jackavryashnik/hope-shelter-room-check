@@ -1,23 +1,22 @@
-import Bed from '../../Bed/Bed';
-import BedHorizon from '../../BedHorizon/BedHorizon';
 import TwoFloorsBed from '../../TwoFloorsBed/TwoFloorsBed';
 import TwoFloorsBedHorizon from '../../TwoFloorsBedHorizon/TwoFloorsBedHorizon';
-import css from './Room15.module.css';
+import css from './Room13.module.css';
 
-const Room15 = () => {
+const Room13 = () => {
   return (
     <div className={css.roomContainer}>
       <div className={css.top}>
-        <Bed />
+        <TwoFloorsBed />
         <TwoFloorsBedHorizon />
         <TwoFloorsBed />
       </div>
-      <div className={css.roomNumber}>15</div>
+      <div className={css.roomNumber}>13</div>
       <div className={css.bottom}>
-        <BedHorizon />
+        <TwoFloorsBed />
+        <TwoFloorsBedHorizon />
       </div>
     </div>
   );
 };
 
-export default Room15;
+export default Room13;
