@@ -21,7 +21,6 @@
   display: flex;
   justify-content: end;
   align-items: end;
-  gap: 30px;
 }
 
 .roomNumber {
