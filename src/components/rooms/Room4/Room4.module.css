@@ -1,0 +1,26 @@
+.roomWrap {
+  display: grid;
+  align-content: space-between;
+  align-items: end;
+  justify-content: space-between;
+  position: relative;
+
+  padding: 32px;
+  width: 343px;
+  height: 298px;
+  border-radius: 12px;
+  border: 1px solid #d5d5d5;
+  background-color: var(--white);
+}
+
+.roomNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.roomWrap :nth-child(2),
+.roomWrap :nth-child(3) {
+  grid-row: 2;
+}
