@@ -12,8 +12,10 @@ const validationSchema = Yup.object({
 
 const LoginForm = ({ setter }) => {
   const loginFormId = useId();
+  console.log(loginFormId);
 
   const handleLogin = async (values, actions) => {
+    console.log(values);
     // const result = await axios.post(values);
     // if (result.status === 201) {
     //   setter(true);
