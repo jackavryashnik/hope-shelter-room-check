@@ -1,28 +1,30 @@
-import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
 import Button from '../Button/Button';
 import css from './LoginForm.module.css';
+import { login } from '../../api/services/auth';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
 });
 
-const LoginForm = ({ setter }) => {
+const LoginForm = () => {
   const loginFormId = useId();
-  console.log(loginFormId);
 
+  const navigate = useNavigate();
   const handleLogin = async (values, actions) => {
-    console.log(values);
-    // const result = await axios.post(values);
-    // if (result.status === 201) {
-    //   setter(true);
-    //   actions.resetForm();
-    // } else {
-    //   console.log(result.status);
-    // }
+    const result = await login(values);
+    if (result.status === 201) {
+      localStorage.setItem('token', result.data.token);
+      console.log(result);
+      navigate('/');
+      actions.resetForm();
+    } else {
+      console.log(result.status);
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import { NavLink, Navigate, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
-const AuthPage = ({ isLoggedIn }) => {
+const AuthPage = () => {
   const { authType } = useParams();
 
   if (authType !== 'login' && authType !== 'register') {
@@ -16,7 +16,7 @@ const AuthPage = ({ isLoggedIn }) => {
 
   return (
     <div className={css.authPage}>
-      <Header/>
+      <Header />
       <div className={css.authPageContainer}>
         <div className={css.authNavigation}>
           <NavLink
@@ -38,7 +38,6 @@ const AuthPage = ({ isLoggedIn }) => {
             Register
           </NavLink>
         </div>
-        {isLoggedIn && <Navigate to="/" />}
         {authType === 'login' ? <LoginForm /> : <RegisterForm />}
       </div>
       <Footer />
