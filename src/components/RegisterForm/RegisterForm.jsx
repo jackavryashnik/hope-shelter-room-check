@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import Button from '../Button/Button';
 import css from './RegisterForm.module.css';
 import { register } from '../../api/services/auth';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   username: Yup.string().required('Required'),
@@ -11,16 +12,15 @@ const validationSchema = Yup.object({
   password: Yup.string().required('Required'),
 });
 
-const RegisterForm = ({ setter }) => {
+const RegisterForm = () => {
   const registerFormId = useId();
-
+  const navigate = useNavigate();
   const handleRegister = async (values, actions) => {
     console.log(values);
     const result = await register(values);
     if (result.status === 201) {
-      console.log(result);
-      // setter(true);
-      // actions.resetForm();
+      navigate('/login');
+      actions.resetForm();
     } else {
       console.log(result.status);
     }
