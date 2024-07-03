@@ -1,12 +1,12 @@
-import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
 import Button from '../Button/Button';
 import css from './RegisterForm.module.css';
+import { register } from '../../api/services/auth';
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Required'),
+  username: Yup.string().required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
 });
@@ -15,18 +15,20 @@ const RegisterForm = ({ setter }) => {
   const registerFormId = useId();
 
   const handleRegister = async (values, actions) => {
-    // const result = await axios.post(values);
-    // if (result.status === 201) {
-    //   setter(true);
-    //   actions.resetForm();
-    // } else {
-    //   console.log(result.status);
-    // }
+    console.log(values);
+    const result = await register(values);
+    if (result.status === 201) {
+      console.log(result);
+      // setter(true);
+      // actions.resetForm();
+    } else {
+      console.log(result.status);
+    }
   };
 
   return (
     <Formik
-      initialValues={{ name: '', email: '', password: '' }}
+      initialValues={{ username: '', email: '', password: '' }}
       onSubmit={handleRegister}
       validationSchema={validationSchema}
     >
@@ -35,12 +37,16 @@ const RegisterForm = ({ setter }) => {
           <div className={css.inputWrapper}>
             <Field
               type="text"
-              name="name"
+              name="username"
               id={`${registerFormId}-name`}
               className={css.input}
               placeholder="Name"
             />
-            <ErrorMessage name="name" component="span" className={css.error} />
+            <ErrorMessage
+              name="username"
+              component="span"
+              className={css.error}
+            />
           </div>
           <div className={css.inputWrapper}>
             <Field
