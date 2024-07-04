@@ -1,12 +1,7 @@
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { lazy, Suspense, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import AuthPage from './pages/AuthPage/AuthPage';
-
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const RoomsPage = lazy(() => import('./pages/RoomsPage/RoomsPage'));
+import RootRouting from '../routers/RootRouting';
 
 function App() {
   const navigate = useNavigate();
@@ -20,7 +15,8 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <RootRouting />
+      {/* <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rooms" element={<RoomsPage />} />
@@ -32,7 +28,7 @@ function App() {
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </Suspense>
+      </Suspense> */}
     </>
   );
 }
