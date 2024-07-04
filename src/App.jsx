@@ -13,24 +13,7 @@ function App() {
     }
   }, [navigate]);
 
-  return (
-    <>
-      <RootRouting />
-      {/* <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/rooms" element={<RoomsPage />} />
-          <Route
-            path="/:authType"
-            element={
-              <RestrictedRoute redirectTo="/" component={<AuthPage />} />
-            }
-          />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense> */}
-    </>
-  );
+  return <RootRouting />;
 }
 
 export default App;
