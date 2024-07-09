@@ -1,0 +1,48 @@
+.page {
+  background-color: #fff;
+}
+
+.roomsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 80px 0;
+  min-height: calc(100vh - 70px - 152.5px);
+}
+
+.room {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 343px;
+  height: 87px;
+  border-radius: 12px;
+  border: 1px solid #e6e6e6;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.roomNumber {
+  z-index: 1;
+}
+
+.filling {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.green {
+  background-color: var(--green-filling);
+}
+
+.yellow {
+  background-color: var(--yellow-filling);
+}
+
+.red {
+  background-color: var(--red-filling);
+}

@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Layout from '../../components/Layout/Layout';
 import { useEffect, useState } from 'react';
-import Modal from '../../components/Modal/Modal';
-
 import { uiAtom } from '../../state';
 import { useAtom, useSetAtom } from 'jotai';
 import { socket } from '../../api/services/rooms';
+
+import Footer from '../../components/Footer/Footer';
+import Modal from '../../components/Modal/Modal';
+import Layout from '../../components/Layout/Layout';
+import Header from '../../components/Header/Header';
+import css from './RoomsPage.module.css';
 
 const RoomsPage = ({ isLoggedIn }) => {
   const navigate = useNavigate();
@@ -31,33 +33,50 @@ const RoomsPage = ({ isLoggedIn }) => {
     });
   }, [ui.modal]);
 
+  const calculatePercentage = room => (room.bedsTaken / room.totalBeds) * 100;
+
+  const colorClass = room => {
+    const percent = calculatePercentage(room);
+
+    if (percent <= 30) return 'green';
+    if (percent > 30 && percent < 80) return 'yellow';
+    if (percent >= 80) return 'red';
+
+    return '';
+  };
+
   return (
-    <>
+    <div className={css.page}>
       <Header isLoggedIn={isLoggedIn} />
       <Layout>
-        Rooms page
-        <div className={'display:flex flex-direction:column'}>
+        <div className={css.roomsList}>
           {rooms &&
-            rooms.map(i => {
+            rooms.map(room => {
               return (
-                <button
-                  key={i._id}
+                <span
+                  key={room._id}
+                  className={css.room}
                   onClick={() => {
                     setUi(prev => ({
                       ...prev,
                       modal: true,
+                      room: room,
                     }));
                   }}
                 >
-                  room number: {i.roomNumber}
-                  beds taken: {i.bedsTaken}
-                </button>
+                  <p className={css.roomNumber}>Room {room.roomNumber}</p>
+                  <div
+                    style={{ width: `${calculatePercentage(room)}%` }}
+                    className={`${css.filling} ${css[colorClass(room)]}`}
+                  ></div>
+                </span>
               );
             })}
           <Modal />
         </div>
       </Layout>
-    </>
+      <Footer />
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAtom, useSetAtom } from 'jotai';
 import { uiAtom } from '../../state';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -9,25 +9,39 @@ import { socket } from '../../api/services/rooms';
 
 const mountElement = document.getElementById('overlays');
 
-const Modal = ({ children, ...props }) => {
+const Modal = ({ children }) => {
   const [ui] = useAtom(uiAtom);
   const setUi = useSetAtom(uiAtom);
-  const { number, total, busy } = props;
-  const [busyBeds, setBusyBeds] = useState(busy);
 
-  const closeModal = () => setUi(prev => ({ ...prev, modal: null }));
+  const [busyBeds, setBusyBeds] = useState(0);
+
+  useEffect(() => {
+    if (ui.room) {
+      setBusyBeds(ui.room.bedsTaken);
+    }
+  }, [ui.room]);
+
+  if (!ui.room) return null;
+
+  const { roomNumber, totalBeds } = ui.room;
+
+  const closeModal = () =>
+    setUi(prev => ({ ...prev, modal: false, room: null }));
+
   const minusBed = () => {
     if (busyBeds > 0) setBusyBeds(busyBeds - 1);
   };
+
   const plusBed = () => {
-    if (busyBeds < total) setBusyBeds(busyBeds + 1);
+    if (busyBeds < totalBeds) setBusyBeds(busyBeds + 1);
   };
+
   const reset = () => setBusyBeds(0);
 
   const onSave = () => {
     socket.emit('updateBedsTaken', {
-      roomId: '668cec5b34ae8c18b72893fe',
-      bedsTaken: 3,
+      roomId: ui.room._id,
+      bedsTaken: busyBeds,
     });
 
     closeModal();
@@ -41,10 +55,10 @@ const Modal = ({ children, ...props }) => {
           <button className={css.closeBtn} onClick={closeModal}>
             <AiOutlineClose size={32} />
           </button>
-          <h3 className={css.title}>Room {number}</h3>
+          <h3 className={css.title}>Room {roomNumber}</h3>
           <ul className={css.list}>
-            <li className={css.listItem}>Total {total}</li>
-            <li className={css.listItem}>Free {total - busyBeds}</li>
+            <li className={css.listItem}>Total {totalBeds}</li>
+            <li className={css.listItem}>Free {totalBeds - busyBeds}</li>
             <li className={css.listItem}>Busy {busyBeds}</li>
           </ul>
 
@@ -55,7 +69,7 @@ const Modal = ({ children, ...props }) => {
               <button type="button" className={css.minus} onClick={minusBed}>
                 -
               </button>
-              {<div className={css.number}>{busyBeds}</div>}
+              <div className={css.number}>{busyBeds}</div>
               <button type="button" className={css.plus} onClick={plusBed}>
                 +
               </button>
