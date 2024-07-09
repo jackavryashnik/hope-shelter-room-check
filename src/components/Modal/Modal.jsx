@@ -50,7 +50,12 @@ const Modal = ({ children }) => {
   return (
     ui.modal &&
     createPortal(
-      <div className={css.overlay}>
+      <div
+        className={css.overlay}
+        onClick={e => {
+          if (e.target === e.currentTarget) closeModal();
+        }}
+      >
         <div className={css.modal}>
           <button className={css.closeBtn} onClick={closeModal}>
             <AiOutlineClose size={32} />
