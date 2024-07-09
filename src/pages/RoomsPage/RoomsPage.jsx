@@ -64,7 +64,9 @@ const RoomsPage = () => {
                     }));
                   }}
                 >
-                  <p className={css.roomNumber}>Room {room.roomNumber}</p>
+                  <p className={css.roomNumber}>
+                    Room {room.roomNumber === '934' ? '9 ¾' : room.roomNumber}
+                  </p>
                   <div
                     style={{ width: `${calculatePercentage(room)}%` }}
                     className={`${css.filling} ${css[colorClass(room)]}`}
