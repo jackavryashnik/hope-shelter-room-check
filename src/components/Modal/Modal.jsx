@@ -50,17 +50,12 @@ const Modal = ({ children }) => {
   return (
     ui.modal &&
     createPortal(
-      <div
-        className={css.overlay}
-        onClick={e => {
-          if (e.target === e.currentTarget) closeModal();
-        }}
-      >
-        <div className={css.modal}>
+      <div className={css.overlay} onClick={closeModal}>
+        <div className={css.modal} onClick={e => e.stopPropagation()}>
           <button className={css.closeBtn} onClick={closeModal}>
             <AiOutlineClose size={32} />
           </button>
-          <h3 className={css.title}>Room {roomNumber}</h3>
+          <h3 className={css.title}>Room {roomNumber === '934' ? '9 ¾' : roomNumber}</h3>
           <ul className={css.list}>
             <li className={css.listItem}>Total {totalBeds}</li>
             <li className={css.listItem}>Free {totalBeds - busyBeds}</li>
