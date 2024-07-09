@@ -5,6 +5,7 @@ import { uiAtom } from '../../state';
 import { AiOutlineClose } from 'react-icons/ai';
 import Button from '../Button/Button';
 import css from './Modal.module.css';
+import { socket } from '../../api/services/rooms';
 
 const mountElement = document.getElementById('overlays');
 
@@ -22,6 +23,15 @@ const Modal = ({ children, ...props }) => {
     if (busyBeds < total) setBusyBeds(busyBeds + 1);
   };
   const reset = () => setBusyBeds(0);
+
+  const onSave = () => {
+    socket.emit('updateBedsTaken', {
+      roomId: '668cec5b34ae8c18b72893fe',
+      bedsTaken: 3,
+    });
+
+    closeModal();
+  };
 
   return (
     ui.modal &&
@@ -54,7 +64,9 @@ const Modal = ({ children, ...props }) => {
               Reset
             </button>
           </div>
-          <Button type={'submit'}>Save</Button>
+          <Button type={'submit'} onClick={onSave}>
+            Save
+          </Button>
         </div>
       </div>,
       mountElement

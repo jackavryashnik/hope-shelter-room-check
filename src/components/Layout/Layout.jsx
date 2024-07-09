@@ -1,9 +1,7 @@
-import css from './Layout.module.css'
+import css from './Layout.module.css';
 
-const Layout = ({children}) => {
-  return (
-    <div className={css.layout}>{children}</div>
-  )
-}
+const Layout = ({ children }) => {
+  return <div className={css.layout}>{children}</div>;
+};
 
-export default Layout
+export default Layout;
