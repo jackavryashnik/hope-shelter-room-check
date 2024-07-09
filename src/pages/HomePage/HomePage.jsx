@@ -4,10 +4,10 @@ import Hero from '../../components/Hero/Hero';
 import Layout from '../../components/Layout/Layout';
 import css from './HomePage.module.css';
 
-const HomePage = ({ isLoggedIn }) => {
+const HomePage = () => {
   return (
     <div className={css.wrapper}>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header />
       <Layout className={css.layout}>
         <Hero />
       </Layout>

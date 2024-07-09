@@ -10,7 +10,7 @@ import Layout from '../../components/Layout/Layout';
 import Header from '../../components/Header/Header';
 import css from './RoomsPage.module.css';
 
-const RoomsPage = ({ isLoggedIn }) => {
+const RoomsPage = () => {
   const navigate = useNavigate();
   const setUi = useSetAtom(uiAtom);
   const [ui] = useAtom(uiAtom);
@@ -47,7 +47,7 @@ const RoomsPage = ({ isLoggedIn }) => {
 
   return (
     <div className={css.page}>
-      <Header isLoggedIn={isLoggedIn} />
+      <Header />
       <Layout>
         <div className={css.roomsList}>
           {rooms &&
