@@ -1,16 +1,28 @@
 import css from './BedHorizon.module.css';
 
-const BedHorizon = ({ check }) => {
-    const isChecked = check;
-  
-    return (
-      <div className={css.bedWrapper}>
-        <label className={css.bed}>
-          <input type="checkbox" className={css.check} checked={isChecked} />
-          <span className={css.checkmark}></span>
-        </label>
-      </div>
-    );
+const BedHorizon = ({ beds, setBeds, bedKey }) => {
+  const isChecked = beds[bedKey][0];
+
+  const handleCheckboxChange = () => {
+    setBeds(prevBeds => ({
+      ...prevBeds,
+      [bedKey]: [!isChecked],
+    }));
   };
 
-export default BedHorizon
+  return (
+    <div className={css.bedWrapper}>
+      <label className={css.bed}>
+        <input
+          type="checkbox"
+          className={css.check}
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+        <span className={css.checkmark}></span>
+      </label>
+    </div>
+  );
+};
+
+export default BedHorizon;
