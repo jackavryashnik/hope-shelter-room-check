@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import css from './NotFoundPage.module.css';
+import Button from '../../components/Button/Button';
 
 const NotFoundPage = () => {
   const [counter, setCounter] = useState(10);
@@ -27,13 +28,13 @@ const NotFoundPage = () => {
       </div>
       {!counter && <Navigate to="/" />}
 
-      <button
+      <Button
         className={css.button}
         type={'button'}
         onClick={() => setCounter(0)}
       >
         Go home now
-      </button>
+      </Button>
     </div>
   );
 };

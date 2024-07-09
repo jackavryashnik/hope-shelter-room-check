@@ -20,12 +20,8 @@
   font-size: 90px;
 }
 
-.cactus {
-  margin: 0 8px;
-}
-
 .counter {
-  margin-top: 20px;
+  margin: 20px auto;
   font-size: 20px;
   font-weight: 500;
 }
