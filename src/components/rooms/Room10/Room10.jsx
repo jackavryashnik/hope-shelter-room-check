@@ -27,8 +27,8 @@ const Room10 = () => {
       room: {
         ...prevUi.room,
         bedsTaken: countOccupiedBeds(),
+        beds: beds,
       },
-      beds: beds,
     }));
   }, [beds, setUi]);
 

@@ -50,7 +50,7 @@ const RoomsPage = () => {
     return () => {
       socket.off('connect');
       socket.off('bedsFetched');
-      socket.off('updateBeds');
+      socket.off('updateRoom');
     };
   }, [ui.modal]);
 

@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAtom } from 'jotai';
 import { uiAtom } from '../../state';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -11,36 +11,73 @@ const mountElement = document.getElementById('overlays');
 
 const Modal = ({ children }) => {
   const [ui, setUi] = useAtom(uiAtom);
-
-  const [busyBeds, setBusyBeds] = useState(0);
-
-  useEffect(() => {
-    if (ui.room) {
-      setBusyBeds(ui.room.bedsTaken);
-    }
-  }, [ui.room]);
+  const [busyBeds, setBusyBeds] = useState(ui.room?.bedsTaken || 0);
 
   if (!ui.room) return null;
-
-  const { roomNumber, totalBeds } = ui.room;
 
   const closeModal = () =>
     setUi(prev => ({ ...prev, modal: false, room: null }));
 
+  const fillTheRoom = () => {
+    const newBeds = { ...ui.room.beds };
+    let bedsToChange = ui.room.bedsTaken;
+
+    for (const key in newBeds) {
+      for (let i = 0; i < newBeds[key].length; i++) {
+        if (bedsToChange > 0) {
+          newBeds[key][i] = true;
+          bedsToChange--;
+        } else {
+          newBeds[key][i] = false;
+        }
+      }
+    }
+    return newBeds;
+  };
+
   const minusBed = () => {
-    if (busyBeds > 0) setBusyBeds(busyBeds - 1);
+    if (ui.room.bedsTaken > 0 && busyBeds > 0) {
+      setUi(prev => ({
+        ...prev,
+        modal: false,
+        room: {
+          ...prev.room,
+          bedsTaken: prev.bedsTaken - 1,
+          beds: fillTheRoom(),
+        },
+      }));
+      setBusyBeds(busyBeds - 1);
+    }
   };
 
   const plusBed = () => {
-    if (busyBeds < totalBeds) setBusyBeds(busyBeds + 1);
+    if (ui.room.bedsTaken < ui.room.totalBeds) {
+      setUi(prev => ({
+        ...prev,
+        modal: false,
+        room: {
+          ...prev.room,
+          bedsTaken: prev.bedsTaken + 1,
+          beds: fillTheRoom(),
+        },
+      }));
+      setBusyBeds(busyBeds + 1);
+    }
   };
 
-  const reset = () => setBusyBeds(0);
+  const reset = () => {
+    setUi(prev => ({
+      ...prev,
+      modal: false,
+      room: { ...prev.room, bedsTaken: 0 },
+    }));
+    setBusyBeds(0);
+  };
 
   const onSave = () => {
     socket.emit('updateRoom', {
       roomId: ui.room._id,
-      bedsTaken: busyBeds,
+      bedsTaken: ui.room.bedsTaken,
       beds: ui.room.beds,
     });
 
@@ -56,11 +93,13 @@ const Modal = ({ children }) => {
             <AiOutlineClose size={32} />
           </button>
           <h3 className={css.title}>
-            Room {roomNumber === '934' ? '9 ¾' : roomNumber}
+            Room {ui.room.roomNumber === '934' ? '9 ¾' : ui.room.roomNumber}
           </h3>
           <ul className={css.list}>
-            <li className={css.listItem}>Total {totalBeds}</li>
-            <li className={css.listItem}>Free {totalBeds - busyBeds}</li>
+            <li className={css.listItem}>Total {ui.room.totalBeds}</li>
+            <li className={css.listItem}>
+              Free {ui.room.totalBeds - busyBeds}
+            </li>
             <li className={css.listItem}>Busy {busyBeds}</li>
           </ul>
 
