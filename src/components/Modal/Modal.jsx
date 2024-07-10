@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useState, useEffect } from 'react';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { uiAtom } from '../../state';
 import { AiOutlineClose } from 'react-icons/ai';
 import Button from '../Button/Button';
@@ -10,8 +10,7 @@ import { socket } from '../../api/services/rooms';
 const mountElement = document.getElementById('overlays');
 
 const Modal = ({ children }) => {
-  const [ui] = useAtom(uiAtom);
-  const setUi = useSetAtom(uiAtom);
+  const [ui, setUi] = useAtom(uiAtom);
 
   const [busyBeds, setBusyBeds] = useState(0);
 
@@ -39,9 +38,10 @@ const Modal = ({ children }) => {
   const reset = () => setBusyBeds(0);
 
   const onSave = () => {
-    socket.emit('updateBedsTaken', {
+    socket.emit('updateRoom', {
       roomId: ui.room._id,
       bedsTaken: busyBeds,
+      beds: ui.room.beds,
     });
 
     closeModal();
@@ -55,7 +55,9 @@ const Modal = ({ children }) => {
           <button className={css.closeBtn} onClick={closeModal}>
             <AiOutlineClose size={32} />
           </button>
-          <h3 className={css.title}>Room {roomNumber === '934' ? '9 ¾' : roomNumber}</h3>
+          <h3 className={css.title}>
+            Room {roomNumber === '934' ? '9 ¾' : roomNumber}
+          </h3>
           <ul className={css.list}>
             <li className={css.listItem}>Total {totalBeds}</li>
             <li className={css.listItem}>Free {totalBeds - busyBeds}</li>

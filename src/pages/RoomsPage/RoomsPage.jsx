@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { uiAtom } from '../../state';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { socket } from '../../api/services/rooms';
 
 import Footer from '../../components/Footer/Footer';
@@ -13,8 +13,7 @@ import loadRoomComponent from '../../utils/loadRoomComponent';
 
 const RoomsPage = () => {
   const navigate = useNavigate();
-  const setUi = useSetAtom(uiAtom);
-  const [ui] = useAtom(uiAtom);
+  const [ui, setUi] = useAtom(uiAtom);
   const [rooms, setRooms] = useState([]);
   const [RoomComponent, setRoomComponent] = useState(null);
 
@@ -34,9 +33,24 @@ const RoomsPage = () => {
       setRooms(data.rooms);
     });
 
+    socket.on('updateRoom', updatedRoom => {
+      setRooms(prevRooms =>
+        prevRooms.map(room =>
+          room._id === updatedRoom.roomId
+            ? {
+                ...room,
+                bedsTaken: updatedRoom.bedsTaken,
+                beds: updatedRoom.beds,
+              }
+            : room
+        )
+      );
+    });
+
     return () => {
       socket.off('connect');
       socket.off('bedsFetched');
+      socket.off('updateBeds');
     };
   }, [ui.modal]);
 
@@ -90,7 +104,7 @@ const RoomsPage = () => {
                 ></div>
               </span>
             ))}
-          <Modal>{RoomComponent && <RoomComponent />}</Modal>
+          <Modal  >{RoomComponent && <RoomComponent />}</Modal>
         </div>
       </Layout>
       <Footer />
