@@ -1,5 +1,4 @@
 import { createPortal } from 'react-dom';
-import { useState } from 'react';
 import { useAtom } from 'jotai';
 import { uiAtom } from '../../state';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -11,16 +10,14 @@ const mountElement = document.getElementById('overlays');
 
 const Modal = ({ children }) => {
   const [ui, setUi] = useAtom(uiAtom);
-  const [busyBeds, setBusyBeds] = useState(ui.room?.bedsTaken || 0);
 
   if (!ui.room) return null;
 
   const closeModal = () =>
     setUi(prev => ({ ...prev, modal: false, room: null }));
 
-  const fillTheRoom = () => {
+  const fillTheRoom = (bedsToChange) => {
     const newBeds = { ...ui.room.beds };
-    let bedsToChange = ui.room.bedsTaken;
 
     for (const key in newBeds) {
       for (let i = 0; i < newBeds[key].length; i++) {
@@ -36,17 +33,15 @@ const Modal = ({ children }) => {
   };
 
   const minusBed = () => {
-    if (ui.room.bedsTaken > 0 && busyBeds > 0) {
+    if (ui.room.bedsTaken > 0) {
       setUi(prev => ({
         ...prev,
-        modal: false,
         room: {
           ...prev.room,
-          bedsTaken: prev.bedsTaken - 1,
-          beds: fillTheRoom(),
+          bedsTaken: prev.room.bedsTaken - 1,
+          beds: fillTheRoom(prev.room.bedsTaken - 1),
         },
       }));
-      setBusyBeds(busyBeds - 1);
     }
   };
 
@@ -54,24 +49,20 @@ const Modal = ({ children }) => {
     if (ui.room.bedsTaken < ui.room.totalBeds) {
       setUi(prev => ({
         ...prev,
-        modal: false,
         room: {
           ...prev.room,
-          bedsTaken: prev.bedsTaken + 1,
-          beds: fillTheRoom(),
+          bedsTaken: prev.room.bedsTaken + 1,
+          beds: fillTheRoom(prev.room.bedsTaken + 1),
         },
       }));
-      setBusyBeds(busyBeds + 1);
     }
   };
 
   const reset = () => {
     setUi(prev => ({
       ...prev,
-      modal: false,
-      room: { ...prev.room, bedsTaken: 0 },
+      room: { ...prev.room, bedsTaken: 0, beds: fillTheRoom(0) },
     }));
-    setBusyBeds(0);
   };
 
   const onSave = () => {
@@ -98,19 +89,21 @@ const Modal = ({ children }) => {
           <ul className={css.list}>
             <li className={css.listItem}>Total {ui.room.totalBeds}</li>
             <li className={css.listItem}>
-              Free {ui.room.totalBeds - busyBeds}
+              Free {ui.room.totalBeds - ui.room.bedsTaken}
             </li>
-            <li className={css.listItem}>Busy {busyBeds}</li>
+            <li className={css.listItem}>Busy {ui.room.bedsTaken}</li>
           </ul>
 
-          <div className={css.children}>{children}</div>
+          <div className={css.children}>
+            {children}
+          </div>
 
           <div className={css.controlContainer}>
             <div className={css.plusMinus}>
               <button type="button" className={css.minus} onClick={minusBed}>
                 -
               </button>
-              <div className={css.number}>{busyBeds}</div>
+              <div className={css.number}>{ui.room.bedsTaken}</div>
               <button type="button" className={css.plus} onClick={plusBed}>
                 +
               </button>
