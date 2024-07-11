@@ -1,8 +1,8 @@
 import css from './TwoFloorsBed.module.css';
 
 const TwoFloorsBed = ({ beds, setBeds, bedKey }) => {
-  const isCheckedUp = beds[bedKey][0];
-  const isCheckedDwn = beds[bedKey][1];
+  const isCheckedUp = beds[bedKey] ? beds[bedKey][0] : false;
+  const isCheckedDwn = beds[bedKey] ? beds[bedKey][1] : false;
 
   const handleCheckboxChange = level => {
     setBeds(prevBeds => ({

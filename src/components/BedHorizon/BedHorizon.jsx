@@ -1,7 +1,7 @@
 import css from './BedHorizon.module.css';
 
 const BedHorizon = ({ beds, setBeds, bedKey }) => {
-  const isChecked = beds[bedKey][0];
+  const isChecked = beds[bedKey] ? beds[bedKey][0] : false;
 
   const handleCheckboxChange = () => {
     setBeds(prevBeds => ({
