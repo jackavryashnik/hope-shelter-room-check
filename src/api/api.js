@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = import.meta.env.BD_URL;
+const BASE_URL = 'https://hope-shelter-api.onrender.com/api';
 
 const api = axios.create({
   withCredentials: true,
