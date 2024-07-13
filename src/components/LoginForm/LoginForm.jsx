@@ -25,7 +25,6 @@ const LoginForm = () => {
       localStorage.setItem('userRole', result.data.user.role);
 
       setUser(prevState => ({ ...prevState, user: result.data.user }));
-      setUser(prevState => console.log(prevState));
       navigate('/');
       actions.resetForm();
     } else {

@@ -16,7 +16,6 @@ const RegisterForm = () => {
   const registerFormId = useId();
   const navigate = useNavigate();
   const handleRegister = async (values, actions) => {
-    console.log(values);
     const result = await register(values);
     if (result.status === 201) {
       navigate('/login');
