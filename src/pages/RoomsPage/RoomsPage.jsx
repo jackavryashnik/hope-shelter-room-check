@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { uiAtom } from '../../state';
 import { useAtom } from 'jotai';
@@ -12,17 +11,9 @@ import css from './RoomsPage.module.css';
 import loadRoomComponent from '../../utils/loadRoomComponent';
 
 const RoomsPage = () => {
-  const navigate = useNavigate();
   const [ui, setUi] = useAtom(uiAtom);
   const [rooms, setRooms] = useState([]);
   const [RoomComponent, setRoomComponent] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login');
-    }
-  }, [navigate]);
 
   useEffect(() => {
     socket.on('connect', () => {

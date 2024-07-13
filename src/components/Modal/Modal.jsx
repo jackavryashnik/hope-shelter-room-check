@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useAtom } from 'jotai';
-import { uiAtom } from '../../state';
+import { uiAtom, userAtom } from '../../state';
 import { AiOutlineClose } from 'react-icons/ai';
 import Button from '../Button/Button';
 import css from './Modal.module.css';
@@ -10,13 +10,19 @@ const mountElement = document.getElementById('overlays');
 
 const Modal = ({ children }) => {
   const [ui, setUi] = useAtom(uiAtom);
+  const [user, setUser] = useAtom(userAtom);
 
   if (!ui.room) return null;
+  if (!user) return setUser(prevState => ({ ...prevState, role: 'user' }));
+
+  const isUserAdmin = user.role === 'admin' || user.role === 'superadmin';
+  console.log('user', user);
+  console.log('isUserAdmin', isUserAdmin);
 
   const closeModal = () =>
     setUi(prev => ({ ...prev, modal: false, room: null }));
 
-  const fillTheRoom = (bedsToChange) => {
+  const fillTheRoom = bedsToChange => {
     const newBeds = { ...ui.room.beds };
 
     for (const key in newBeds) {
@@ -94,27 +100,33 @@ const Modal = ({ children }) => {
             <li className={css.listItem}>Busy {ui.room.bedsTaken}</li>
           </ul>
 
-          <div className={css.children}>
-            {children}
-          </div>
+          <div className={css.children}>{children}</div>
 
-          <div className={css.controlContainer}>
-            <div className={css.plusMinus}>
-              <button type="button" className={css.minus} onClick={minusBed}>
-                -
-              </button>
-              <div className={css.number}>{ui.room.bedsTaken}</div>
-              <button type="button" className={css.plus} onClick={plusBed}>
-                +
-              </button>
-            </div>
-            <button type="button" className={css.reset} onClick={reset}>
-              Reset
-            </button>
-          </div>
-          <Button type={'submit'} onClick={onSave}>
-            Save
-          </Button>
+          {isUserAdmin && (
+            <>
+              <div className={css.controlContainer}>
+                <div className={css.plusMinus}>
+                  <button
+                    type="button"
+                    className={css.minus}
+                    onClick={minusBed}
+                  >
+                    -
+                  </button>
+                  <div className={css.number}>{ui.room.bedsTaken}</div>
+                  <button type="button" className={css.plus} onClick={plusBed}>
+                    +
+                  </button>
+                </div>
+                <button type="button" className={css.reset} onClick={reset}>
+                  Reset
+                </button>
+              </div>
+              <Button type={'submit'} onClick={onSave}>
+                Save
+              </Button>
+            </>
+          )}
         </div>
       </div>,
       mountElement

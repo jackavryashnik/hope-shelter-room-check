@@ -5,6 +5,8 @@ import Button from '../Button/Button';
 import css from './LoginForm.module.css';
 import { login } from '../../api/services/auth';
 import { useNavigate } from 'react-router-dom';
+import { useSetAtom } from 'jotai';
+import { userAtom } from '../../state';
 
 const validationSchema = Yup.object({
   email: Yup.string().required('Required'),
@@ -13,13 +15,17 @@ const validationSchema = Yup.object({
 
 const LoginForm = () => {
   const loginFormId = useId();
+  const setUser = useSetAtom(userAtom);
 
   const navigate = useNavigate();
   const handleLogin = async (values, actions) => {
     const result = await login(values);
     if (result.status === 201) {
       localStorage.setItem('token', result.data.token);
-      console.log(result);
+      localStorage.setItem('userRole', result.data.user.role);
+
+      setUser(prevState => ({ ...prevState, user: result.data.user }));
+      setUser(prevState => console.log(prevState));
       navigate('/');
       actions.resetForm();
     } else {
