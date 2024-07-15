@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { uiAtom } from '../../state';
-import { useAtom } from 'jotai';
+import { uiAtom, userAtom } from '../../state';
+import { useAtom, useSetAtom } from 'jotai';
 import { socket } from '../../api/services/rooms';
+import { getUser } from '../../api/services/auth';
 
 import Footer from '../../components/Footer/Footer';
 import Modal from '../../components/Modal/Modal';
@@ -12,6 +13,7 @@ import loadRoomComponent from '../../utils/loadRoomComponent';
 
 const RoomsPage = () => {
   const [ui, setUi] = useAtom(uiAtom);
+  const setUser = useSetAtom(userAtom);
   const [rooms, setRooms] = useState([]);
   const [RoomComponent, setRoomComponent] = useState(null);
 
@@ -58,6 +60,20 @@ const RoomsPage = () => {
     }
   }, [ui.room]);
 
+  useEffect(() => {
+    const findUser = async () => {
+      const token = localStorage.getItem('token');
+
+      if (token !== null) {
+        const result = await getUser({ token });
+        const user = result.data.user;
+        setUser(user);
+      }
+    };
+
+    findUser();
+  }, [setUser]);
+
   const calculatePercentage = room => (room.bedsTaken / room.totalBeds) * 100;
 
   const colorClass = room => {
@@ -95,7 +111,7 @@ const RoomsPage = () => {
                 ></div>
               </span>
             ))}
-          <Modal  >{RoomComponent && <RoomComponent />}</Modal>
+          <Modal>{RoomComponent && <RoomComponent />}</Modal>
         </div>
       </Layout>
       <Footer />
