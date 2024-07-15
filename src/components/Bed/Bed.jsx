@@ -1,7 +1,12 @@
+import { useAtom } from 'jotai';
 import css from './Bed.module.css';
+import { userAtom } from '../../state';
 
 const Bed = ({ beds, setBeds, bedKey }) => {
   const isChecked = beds[bedKey] ? beds[bedKey][0] : false;
+  const [user] = useAtom(userAtom);
+  const isUserAdmin = user.role === 'admin' || user.role === 'superadmin';
+  const isCheckAllowed = user && isUserAdmin;
 
   const handleCheckboxChange = () => {
     setBeds(prevBeds => ({
@@ -18,6 +23,7 @@ const Bed = ({ beds, setBeds, bedKey }) => {
           className={css.check}
           checked={isChecked}
           onChange={handleCheckboxChange}
+          disabled={!isCheckAllowed}
         />
         <span className={css.checkmark}></span>
       </label>

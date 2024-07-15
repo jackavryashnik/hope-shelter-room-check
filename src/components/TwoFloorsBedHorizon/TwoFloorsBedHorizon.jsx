@@ -1,8 +1,13 @@
+import { useAtom } from 'jotai';
+import { userAtom } from '../../state';
 import css from './TwoFloorsBedHorizon.module.css';
 
 const TwoFloorsBedHorizon = ({ beds, setBeds, bedKey }) => {
   const isCheckedUp = beds[bedKey] ? beds[bedKey][0] : false;
   const isCheckedDwn = beds[bedKey] ? beds[bedKey][1] : false;
+  const [user] = useAtom(userAtom);
+  const isUserAdmin = user.role === 'admin' || user.role === 'superadmin';
+  const isCheckAllowed = user && isUserAdmin;
 
   const handleCheckboxChange = level => {
     setBeds(prevBeds => ({
@@ -22,6 +27,7 @@ const TwoFloorsBedHorizon = ({ beds, setBeds, bedKey }) => {
           className={css.check}
           checked={isCheckedDwn}
           onChange={() => handleCheckboxChange('down')}
+          disabled={!isCheckAllowed}
         />
         <span className={css.checkmark}></span>
       </label>
@@ -31,6 +37,7 @@ const TwoFloorsBedHorizon = ({ beds, setBeds, bedKey }) => {
           className={css.check}
           checked={isCheckedUp}
           onChange={() => handleCheckboxChange('up')}
+          disabled={!isCheckAllowed}
         />
         <span className={css.checkmark}></span>
       </label>

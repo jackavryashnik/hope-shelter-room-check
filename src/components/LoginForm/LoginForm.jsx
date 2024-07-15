@@ -22,7 +22,6 @@ const LoginForm = () => {
     const result = await login(values);
     if (result.status === 201) {
       localStorage.setItem('token', result.data.token);
-      localStorage.setItem('userRole', result.data.user.role);
 
       setUser(prevState => ({ ...prevState, user: result.data.user }));
       navigate('/');

@@ -13,7 +13,7 @@ const Modal = ({ children }) => {
   const [user, setUser] = useAtom(userAtom);
 
   if (!ui.room) return null;
-  if (!user) return setUser(prevState => ({ ...prevState, role: 'user' }));
+  if (!user) setUser(prevState => ({ ...prevState, role: 'user' }));
 
   const isUserAdmin = user.role === 'admin' || user.role === 'superadmin';
 
