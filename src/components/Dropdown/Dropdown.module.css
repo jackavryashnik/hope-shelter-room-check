@@ -1,0 +1,45 @@
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dropdown {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  max-width: 355px;
+  height: fit-content;
+  padding: 16px;
+  background-color: var(--modal-bg-color);
+  border: var(--black) 1px solid;
+  border-radius: 8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link {
+  font-weight: 400;
+}
+
+.user {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 160px;
+  white-space: nowrap;
+  max-width: 323px;
+}
+
+.btn {
+  font-weight: 400;
+  padding: 4px 8px;
+  margin: 0 auto;
+  width: fit-content;
+}

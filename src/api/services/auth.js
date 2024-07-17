@@ -11,3 +11,7 @@ export const login = async payload => {
 export const getUser = async payload => {
   return api.post('auth/user', payload);
 };
+
+export const logout = async payload => {
+  return api.post('auth/logout', payload);
+};

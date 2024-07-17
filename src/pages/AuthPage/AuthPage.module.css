@@ -1,10 +1,9 @@
 .authPage {
-  width: 100vw;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: calc(100vh - 167.5px);
+  width: 100vw;
   background-color: var(--white);
 }
 

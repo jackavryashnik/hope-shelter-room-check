@@ -25,33 +25,35 @@ const AuthPage = () => {
   }
 
   return (
-    <div className={css.authPage}>
+    <>
       <Header />
-      <div className={css.authPageContainer}>
-        <div className={css.authNavigation}>
-          <NavLink
-            to="/login"
-            className={clsx(
-              css.authNavLink,
-              authType === 'login' && css.activeLink
-            )}
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/register"
-            className={clsx(
-              css.authNavLink,
-              authType === 'register' && css.activeLink
-            )}
-          >
-            Register
-          </NavLink>
+      <div className={css.authPage}>
+        <div className={css.authPageContainer}>
+          <div className={css.authNavigation}>
+            <NavLink
+              to="/login"
+              className={clsx(
+                css.authNavLink,
+                authType === 'login' && css.activeLink
+              )}
+            >
+              Login
+            </NavLink>
+            <NavLink
+              to="/register"
+              className={clsx(
+                css.authNavLink,
+                authType === 'register' && css.activeLink
+              )}
+            >
+              Register
+            </NavLink>
+          </div>
+          {authType === 'login' ? <LoginForm /> : <RegisterForm />}
         </div>
-        {authType === 'login' ? <LoginForm /> : <RegisterForm />}
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
