@@ -19,24 +19,48 @@ import css from './FloorPlan.module.css';
 
 const FloorPlan = forwardRef((props, ref) => {
   return (
-    <div ref={ref} className={css.floorPlan} {...props}>
-      <Room1 />
-      <Room2 />
-      <Room3 />
-      <Room4 />
-      <Room5 />
-      <Room6 />
-      <Room7 />
-      <Room8 />
-      <Room9 />
-      <Room934 />
-      <Room10 />
-      <Room11 />
-      <Room12 />
-      <Room13 />
-      <Room14 />
-      <Room15 />
-    </div>
+    <section ref={ref} {...props}>
+      <div className={css.floorPlan}>
+        <div className={css.leftSide}>
+          <div className={css.column1}>
+            <Room934 className={css.room} />
+            <Room9 className={css.room} />
+            <Room8 className={css.room} />
+            <Room7 className={css.room} />
+            <Room6 className={css.room} />
+            <Room5 className={css.room} />
+          </div>
+
+          <div className={css.column2}>
+            <Room10 className={css.room} />
+            <div className={css.roomsGroup}>
+              <Room1 className={css.room} />
+              <Room2 className={css.room} />
+              <Room3 className={css.room} />
+              <Room4 className={css.room} />
+            </div>
+          </div>
+        </div>
+
+        <div className={css.rightSide}>
+          <div className={css.roomsGroup2}>
+            <div className={css.column3}>
+              <div className={css.storage}>Storage</div>
+              <Room13 className={css.room} />
+              <Room15 className={css.room} />
+            </div>
+
+            <div className={css.column4}>
+              <Room11 className={css.room} />
+              <Room12 className={css.room} />
+              <Room14 className={css.room} />
+            </div>
+          </div>
+
+          <div className={css.kitchen}>Kitchen area</div>
+        </div>
+      </div>
+    </section>
   );
 });
 

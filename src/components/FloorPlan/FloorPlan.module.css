@@ -1,0 +1,80 @@
+.floorPlan {
+  display: flex;
+  gap: 160px;
+  padding: 32px;
+  overflow: auto;
+  border-radius: 16px;
+  background-color: var(--dark-grey);
+}
+
+.leftSide {
+  display: flex;
+  gap: 80px;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  gap: 16px;
+}
+
+.column1 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.column2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.column3 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.column4 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.roomsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.roomsGroup2 {
+  display: flex;
+  gap: 80px;
+}
+
+.storage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 343px;
+  height: 298px;
+  border-radius: 12px;
+  border: 1px solid #d5d5d5;
+  background-color: var(--light-grey);
+}
+
+.kitchen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 766px;
+  height: 926px;
+  border-radius: 12px;
+  border: 1px solid #d5d5d5;
+  background-color: var(--light-grey);
+}
