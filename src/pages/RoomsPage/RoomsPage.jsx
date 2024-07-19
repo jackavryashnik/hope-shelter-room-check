@@ -48,7 +48,7 @@ const RoomsPage = () => {
   }, [ui.modal]);
 
   useEffect(() => {
-    if (ui.room) {
+    if (ui.modal && ui.room) {
       loadRoomComponent(ui.room.roomNumber).then(component => {
         if (component) {
           setRoomComponent(() => component);
@@ -58,7 +58,7 @@ const RoomsPage = () => {
         }
       });
     }
-  }, [ui.room]);
+  }, [ui]);
 
   useEffect(() => {
     const findUser = async () => {

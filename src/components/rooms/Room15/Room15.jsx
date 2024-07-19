@@ -14,9 +14,17 @@ const initialBedsState = {
   bed4: [false],
 };
 
-const Room15 = () => {
+const Room15 = ({ room }) => {
   const [ui, setUi] = useAtom(uiAtom);
-  const [beds, setBeds] = useState(ui.room?.beds || initialBedsState);
+  const [beds, setBeds] = useState(
+    room?.beds || ui.room?.beds || initialBedsState
+  );
+
+  useEffect(() => {
+    if (room !== undefined) {
+      setBeds(room.beds);
+    }
+  }, [room]);
 
   useEffect(() => {
     const countOccupiedBeds = () => {

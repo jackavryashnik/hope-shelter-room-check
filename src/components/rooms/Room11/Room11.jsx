@@ -13,10 +13,18 @@ const initialBedsState = {
   bed5: [false, false],
 };
 
-const Room11 = () => {
+const Room11 = ({ room }) => {
   const [ui, setUi] = useAtom(uiAtom);
-  const [beds, setBeds] = useState(ui.room?.beds || initialBedsState);
-  
+  const [beds, setBeds] = useState(
+    room?.beds || ui.room?.beds || initialBedsState
+  );
+
+  useEffect(() => {
+    if (room !== undefined) {
+      setBeds(room.beds);
+    }
+  }, [room]);
+
   useEffect(() => {
     const countOccupiedBeds = () => {
       return Object.values(beds)
@@ -33,18 +41,18 @@ const Room11 = () => {
       },
     }));
   }, [beds, setUi]);
-  
+
   return (
     <div className={css.roomContainer}>
       <div className={css.left}>
-        <TwoFloorsBedHorizon  beds={beds} setBeds={setBeds} bedKey={'bed1'} />
-        <TwoFloorsBed  beds={beds} setBeds={setBeds} bedKey={'bed2'} />
+        <TwoFloorsBedHorizon beds={beds} setBeds={setBeds} bedKey={'bed1'} />
+        <TwoFloorsBed beds={beds} setBeds={setBeds} bedKey={'bed2'} />
       </div>
       <div className={css.roomNumber}>11</div>
       <div className={css.right}>
-        <TwoFloorsBedHorizon  beds={beds} setBeds={setBeds} bedKey={'bed3'} />
-        <TwoFloorsBed  beds={beds} setBeds={setBeds} bedKey={'bed4'} />
-        <TwoFloorsBedHorizon  beds={beds} setBeds={setBeds} bedKey={'bed5'} />
+        <TwoFloorsBedHorizon beds={beds} setBeds={setBeds} bedKey={'bed3'} />
+        <TwoFloorsBed beds={beds} setBeds={setBeds} bedKey={'bed4'} />
+        <TwoFloorsBedHorizon beds={beds} setBeds={setBeds} bedKey={'bed5'} />
       </div>
     </div>
   );

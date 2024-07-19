@@ -11,9 +11,17 @@ const initialBedsState = {
   bed3: [false, false],
 };
 
-export default function Room1() {
+const Room3 = ({ room }) => {
   const [ui, setUi] = useAtom(uiAtom);
-  const [beds, setBeds] = useState(ui.room?.beds || initialBedsState);
+  const [beds, setBeds] = useState(
+    room?.beds || ui.room?.beds || initialBedsState
+  );
+
+  useEffect(() => {
+    if (room !== undefined) {
+      setBeds(room.beds);
+    }
+  }, [room]);
 
   useEffect(() => {
     const countOccupiedBeds = () => {
@@ -40,4 +48,6 @@ export default function Room1() {
       <div className={css.roomNumber}>3</div>
     </div>
   );
-}
+};
+
+export default Room3;
