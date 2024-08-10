@@ -7,7 +7,6 @@ import { logout } from '../../api/services/auth';
 const Dropdown = ({ setter }) => {
   const [user, setUser] = useAtom(userAtom);
   const token = localStorage.getItem('token');
-  console.log(user);
 
   const handleLogout = async () => {
     await logout({ token });
@@ -29,7 +28,7 @@ const Dropdown = ({ setter }) => {
           </div>
         )}
 
-        {user.user && (
+        {user && (
           <div className={css.container}>
             <p className={css.user}>{user.user.email}</p>
             <button type="button" className={css.btn} onClick={handleLogout}>
