@@ -10,6 +10,7 @@ import Layout from '../../components/Layout/Layout';
 import Header from '../../components/Header/Header';
 import css from './RoomsPage.module.css';
 import loadRoomComponent from '../../utils/loadRoomComponent';
+import Loader from '../../components/Loader/Loader';
 
 const RoomsPage = () => {
   const [ui, setUi] = useAtom(uiAtom);
@@ -87,33 +88,36 @@ const RoomsPage = () => {
   return (
     <div className={css.page}>
       <Header />
-      <Layout>
-        <div className={css.roomsList}>
-          {rooms &&
-            rooms.map(room => (
-              <span
-                key={room._id}
-                className={css.room}
-                onClick={() => {
-                  setUi(prev => ({
-                    ...prev,
-                    modal: true,
-                    room: room,
-                  }));
-                }}
-              >
-                <p className={css.roomNumber}>
-                  Room {room.roomNumber === '934' ? '9 ¾' : room.roomNumber}
-                </p>
-                <div
-                  style={{ width: `${calculatePercentage(room)}%` }}
-                  className={`${css.filling} ${css[colorClass(room)]}`}
-                ></div>
-              </span>
-            ))}
-          <Modal>{RoomComponent && <RoomComponent />}</Modal>
-        </div>
-      </Layout>
+      {rooms.length === 0 && <Loader />}
+      {rooms.length > 0 && (
+        <Layout>
+          <div className={css.roomsList}>
+            {rooms &&
+              rooms.map(room => (
+                <span
+                  key={room._id}
+                  className={css.room}
+                  onClick={() => {
+                    setUi(prev => ({
+                      ...prev,
+                      modal: true,
+                      room: room,
+                    }));
+                  }}
+                >
+                  <p className={css.roomNumber}>
+                    Room {room.roomNumber === '934' ? '9 ¾' : room.roomNumber}
+                  </p>
+                  <div
+                    style={{ width: `${calculatePercentage(room)}%` }}
+                    className={`${css.filling} ${css[colorClass(room)]}`}
+                  ></div>
+                </span>
+              ))}
+            <Modal>{RoomComponent && <RoomComponent />}</Modal>
+          </div>
+        </Layout>
+      )}
       <Footer />
     </div>
   );

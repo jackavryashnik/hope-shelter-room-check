@@ -1,0 +1,8 @@
+.loader {
+  height: calc(100vh - 152.5px - 70px);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
