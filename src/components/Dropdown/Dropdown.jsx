@@ -17,7 +17,7 @@ const Dropdown = ({ setter }) => {
   return (
     <div className={css.wrapper} onClick={() => setter(prev => !prev)}>
       <div className={css.dropdown}>
-        {user.user === null && (
+        {user.user === null ? (
           <div className={css.container}>
             <NavLink to="/login" className={css.link}>
               Login
@@ -26,9 +26,7 @@ const Dropdown = ({ setter }) => {
               Register
             </NavLink>
           </div>
-        )}
-
-        {user && (
+        ) : (
           <div className={css.container}>
             <p className={css.user}>{user.user.email}</p>
             <button type="button" className={css.btn} onClick={handleLogout}>
