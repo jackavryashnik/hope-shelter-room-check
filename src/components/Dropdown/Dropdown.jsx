@@ -29,7 +29,7 @@ const Dropdown = ({ setter }) => {
           </div>
         )}
 
-        {user.user && token && (
+        {user.user && (
           <div className={css.container}>
             <p className={css.user}>{user.user.email}</p>
             <button type="button" className={css.btn} onClick={handleLogout}>
