@@ -2,6 +2,12 @@
   background-color: #fff;
 }
 
+.currentGuests {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
 .roomsList {
   display: flex;
   flex-direction: column;

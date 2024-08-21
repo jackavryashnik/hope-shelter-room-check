@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { uiAtom, userAtom } from '../../state';
+import { statsAtom, uiAtom, userAtom } from '../../state';
 import { useAtom, useSetAtom } from 'jotai';
 import { socket } from '../../api/services/rooms';
 import { getUser } from '../../api/services/auth';
@@ -14,8 +14,10 @@ import Loader from '../../components/Loader/Loader';
 
 const RoomsPage = () => {
   const [ui, setUi] = useAtom(uiAtom);
+  const setStats = useSetAtom(statsAtom);
   const setUser = useSetAtom(userAtom);
   const [rooms, setRooms] = useState([]);
+  const [currentGuests, setCurrentGuests] = useState(0);
   const [RoomComponent, setRoomComponent] = useState(null);
 
   useEffect(() => {
@@ -25,6 +27,11 @@ const RoomsPage = () => {
 
     socket.on('bedsFetched', data => {
       setRooms(data.rooms);
+      setCurrentGuests(data.currentGuests);
+      setStats({
+        totalGuests: data.totalGuests,
+        currentGuests: data.currentGuests,
+      });
     });
 
     socket.on('updateRoom', updatedRoom => {
@@ -46,7 +53,7 @@ const RoomsPage = () => {
       socket.off('bedsFetched');
       socket.off('updateRoom');
     };
-  }, [ui.modal]);
+  }, [ui.modal, setStats]);
 
   useEffect(() => {
     if (ui.modal && ui.room) {
@@ -91,6 +98,7 @@ const RoomsPage = () => {
       {rooms.length === 0 && <Loader />}
       {rooms.length > 0 && (
         <Layout>
+          <h3 className={css.currentGuests}>Current guests: {currentGuests}</h3>
           <div className={css.roomsList}>
             {rooms &&
               rooms.map(room => (

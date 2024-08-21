@@ -8,3 +8,8 @@ export const uiAtom = atom({
 export const userAtom = atom({
   user: null,
 });
+
+export const statsAtom = atom({
+  totalGuests: null,
+  currentGuests: null,
+});
