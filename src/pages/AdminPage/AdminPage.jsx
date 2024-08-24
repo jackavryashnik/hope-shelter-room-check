@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Layout from '../../components/Layout/Layout';
 import { getUsers, updateUserRole } from '../../api/services/admin';
 import css from './AdminPage.module.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
@@ -26,8 +27,9 @@ const AdminPage = () => {
     const role = user.role;
 
     try {
-      await updateUserRole(id, role);
+      await updateUserRole({ id, role });
       handleGetUsers();
+      toast.success('Successfully updated!');
     } catch (error) {
       console.error('Error updating user role:', error);
     }
@@ -49,7 +51,7 @@ const AdminPage = () => {
   const handleGetUsers = async () => {
     try {
       const usersData = await getUsers();
-      setUsers(usersData);
+      setUsers(usersData.data.users);
     } catch (error) {
       console.error('Error fetching users:', error);
     }
@@ -107,6 +109,7 @@ const AdminPage = () => {
         </Layout>
       </div>
       <Footer />
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };
