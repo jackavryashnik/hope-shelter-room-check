@@ -13,3 +13,5 @@ export const statsAtom = atom({
   totalGuests: null,
   currentGuests: null,
 });
+
+export const roomsAtom = atom([]);

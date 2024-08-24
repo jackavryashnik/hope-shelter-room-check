@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { statsAtom, uiAtom, userAtom } from '../../state';
+import { roomsAtom, statsAtom, uiAtom, userAtom } from '../../state';
 import { useAtom, useSetAtom } from 'jotai';
 import { socket } from '../../api/services/rooms';
 import { getUser } from '../../api/services/auth';
@@ -14,10 +14,10 @@ import Loader from '../../components/Loader/Loader';
 
 const RoomsPage = () => {
   const [ui, setUi] = useAtom(uiAtom);
-  const setStats = useSetAtom(statsAtom);
   const setUser = useSetAtom(userAtom);
-  const [rooms, setRooms] = useState([]);
-  const [currentGuests, setCurrentGuests] = useState(0);
+  const [rooms, setRooms] = useAtom(roomsAtom);
+  const [stats, setStats] = useAtom(statsAtom);
+  const [currentGuests, setCurrentGuests] = useState(stats.currentGuests);
   const [RoomComponent, setRoomComponent] = useState(null);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const RoomsPage = () => {
       socket.off('bedsFetched');
       socket.off('updateRoom');
     };
-  }, [ui.modal, setStats]);
+  }, [setStats, setRooms, setCurrentGuests]);
 
   useEffect(() => {
     if (ui.modal && ui.room) {
@@ -95,7 +95,7 @@ const RoomsPage = () => {
   return (
     <div className={css.page}>
       <Header />
-      {rooms.length === 0 && <Loader />}
+      {!rooms.length && <Loader />}
       {rooms.length > 0 && (
         <Layout>
           <h3 className={css.currentGuests}>Current guests: {currentGuests}</h3>

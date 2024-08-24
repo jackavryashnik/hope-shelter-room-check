@@ -7,7 +7,9 @@ const BedHorizon = ({ beds, setBeds, bedKey }) => {
   const isChecked = beds[bedKey] ? beds[bedKey][0] : false;
   const [user] = useAtom(userAtom);
   const location = useLocation();
-  const isUserAdmin = user.role === 'admin' || user.role === 'superadmin';
+  const isUserAdmin =
+    (user.user !== null && user.user.role === 'admin') ||
+    (user.user !== null && user.user.role === 'superadmin');
   const isCheckAllowed = user && isUserAdmin && location.pathname === '/rooms';
 
   const handleCheckboxChange = () => {

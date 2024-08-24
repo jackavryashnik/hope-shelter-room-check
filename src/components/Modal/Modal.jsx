@@ -15,7 +15,7 @@ const Modal = ({ children }) => {
   if (!ui.room) return null;
   if (!user) setUser(prevState => ({ ...prevState, role: 'user' }));
 
-  const isUserAdmin = user.role === 'admin' || user.role === 'superadmin';
+  const isUserAdmin = user.user.role === 'admin' || user.user.role === 'superadmin';
 
   const closeModal = () =>
     setUi(prev => ({ ...prev, modal: false, room: null }));

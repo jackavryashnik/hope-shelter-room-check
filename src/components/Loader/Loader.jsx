@@ -13,7 +13,7 @@ const Loader = () => {
         wrapperStyle={{}}
         wrapperClass=""
       />
-      <h2>Server waking up, wait a minute</h2>
+      <h2>Server wakes up, wait a minute and reload the page</h2>
     </div>
   );
 };
