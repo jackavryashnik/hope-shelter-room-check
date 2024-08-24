@@ -10,14 +10,14 @@ const Dropdown = ({ setter }) => {
 
   const handleLogout = async () => {
     await logout({ token });
-    setUser(prev => ({ ...prev, user: null }));
+    setUser({ user: null });
     localStorage.removeItem('token');
   };
 
   return (
     <div className={css.wrapper} onClick={() => setter(prev => !prev)}>
       <div className={css.dropdown}>
-        {user.user === null ? (
+        {user.user === null && token === null ? (
           <div className={css.container}>
             <NavLink to="/login" className={css.link}>
               Login
@@ -29,6 +29,7 @@ const Dropdown = ({ setter }) => {
         ) : (
           <div className={css.container}>
             <p className={css.user}>{user.user.email}</p>
+
             <button type="button" className={css.btn} onClick={handleLogout}>
               Logout
             </button>

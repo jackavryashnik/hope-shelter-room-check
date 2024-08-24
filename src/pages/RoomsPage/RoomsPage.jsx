@@ -75,7 +75,7 @@ const RoomsPage = () => {
       if (token !== null) {
         const result = await getUser({ token });
         const user = result.data.user;
-        setUser(user);
+        setUser({ user });
       }
     };
 
