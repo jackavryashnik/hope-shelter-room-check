@@ -22,7 +22,7 @@ const AdminPage = () => {
   }, []);
 
   const handleUpdateUserRole = async id => {
-    const user = users.map(user => user._id === id);
+    const user = users.find(user => user._id === id);
     const role = user.role;
 
     try {
