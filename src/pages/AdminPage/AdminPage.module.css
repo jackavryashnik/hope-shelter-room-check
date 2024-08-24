@@ -1,0 +1,69 @@
+.page {
+  background-color: #fff;
+  height: 100%;
+  min-height: calc(100vh - 70px - 152.5px);
+}
+
+.title {
+  text-align: center;
+  padding: 24px;
+}
+
+.tableContainer {
+  padding-bottom: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px 16px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.tdName {
+  max-width: 62px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tdEmail {
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  background-color: var(--light-blue);
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.select {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 4px 8px;
+  background-color: var(--light-blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--blue);
+}

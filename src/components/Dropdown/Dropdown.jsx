@@ -29,7 +29,15 @@ const Dropdown = ({ setter }) => {
         ) : (
           <div className={css.container}>
             <p className={css.user}>{user.user.email}</p>
-
+            {user.user.role === 'superadmin' && (
+              <NavLink
+                to="/admin"
+                className={css.link}
+                style={{ margin: '0 auto' }}
+              >
+                <button className={css.btn}>Admin panel</button>
+              </NavLink>
+            )}
             <button type="button" className={css.btn} onClick={handleLogout}>
               Logout
             </button>

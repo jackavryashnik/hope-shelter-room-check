@@ -6,6 +6,7 @@ import AuthPage from '../src/pages/AuthPage/AuthPage';
 import NotFoundPage from '../src/pages/NotFoundPage/NotFoundPage';
 
 const HomePage = lazy(() => import('../src/pages/HomePage/HomePage'));
+const AdminPage = lazy(() => import('../src/pages/AdminPage/AdminPage'));
 const RoomsPage = lazy(() => import('../src/pages/RoomsPage/RoomsPage'));
 
 const RootRouting = () => {
@@ -14,6 +15,7 @@ const RootRouting = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/rooms" element={<RoomsPage />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route
           path="/:authType"
           element={<RestrictedRoute redirectTo="/" component={<AuthPage />} />}
